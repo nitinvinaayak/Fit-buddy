@@ -1,0 +1,115 @@
+{% extends "base.html" %}
+
+{% block title %}
+FitBuddy - All Users
+{% endblock %}
+
+
+{% block content %}
+
+<section class="page-header">
+
+    <p class="eyebrow">
+        ADMIN DASHBOARD
+    </p>
+
+    <h1>
+        All Registered Users
+    </h1>
+
+    <p>
+        View the users and their generated FitBuddy plans.
+    </p>
+
+</section>
+
+
+{% if users %}
+
+<div class="table-wrapper card">
+
+    <table>
+
+        <thead>
+
+            <tr>
+                <th>User ID</th>
+                <th>Name</th>
+                <th>Age</th>
+                <th>Weight</th>
+                <th>Goal</th>
+                <th>Intensity</th>
+                <th>Created At</th>
+            </tr>
+
+        </thead>
+
+
+        <tbody>
+
+            {% for user in users %}
+
+            <tr>
+
+                <td>
+                    {{ user.user_id }}
+                </td>
+
+                <td>
+                    {{ user.username }}
+                </td>
+
+                <td>
+                    {{ user.age }}
+                </td>
+
+                <td>
+                    {{ user.weight }} kg
+                </td>
+
+                <td>
+                    {{ user.goal }}
+                </td>
+
+                <td>
+                    {{ user.intensity }}
+                </td>
+
+                <td>
+                    {{ user.created_at }}
+                </td>
+
+            </tr>
+
+            {% endfor %}
+
+        </tbody>
+
+    </table>
+
+</div>
+
+{% else %}
+
+<section class="card empty-state">
+
+    <h2>No users found</h2>
+
+    <p>
+        No FitBuddy users have been registered yet.
+    </p>
+
+</section>
+
+{% endif %}
+
+
+<div class="back-link">
+
+    <a href="/" class="btn secondary-btn">
+        ← Back to Home
+    </a>
+
+</div>
+
+{% endblock %}

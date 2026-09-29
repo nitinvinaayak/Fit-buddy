@@ -1,1 +1,81 @@
+{% extends "base.html" %}
 
+{% block title %}
+FitBuddy - Admin Login
+{% endblock %}
+
+
+{% block content %}
+
+<section class="page-header">
+
+    <p class="eyebrow">
+        ADMIN ACCESS
+    </p>
+
+    <h1>
+        Admin Login
+    </h1>
+
+    <p>
+        Enter the admin key to view registered FitBuddy users.
+    </p>
+
+</section>
+
+
+<section class="card admin-card">
+
+    {% if error %}
+
+    <div class="alert error">
+        {{ error }}
+    </div>
+
+    {% endif %}
+
+
+    <form
+        action="/view-all-users"
+        method="get"
+        class="form"
+    >
+
+        <div class="form-group">
+
+            <label for="key">
+                Admin Key
+            </label>
+
+            <input
+                type="password"
+                id="key"
+                name="key"
+                placeholder="Enter admin key"
+                required
+            >
+
+        </div>
+
+
+        <button
+            type="submit"
+            class="btn primary-btn"
+        >
+            Login
+        </button>
+
+    </form>
+
+</section>
+
+
+<div class="back-link">
+
+    <a href="/" class="btn secondary-btn">
+        ← Back to Home
+    </a>
+
+</div>
+
+{% endblock %}

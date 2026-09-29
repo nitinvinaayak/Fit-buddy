@@ -1,0 +1,207 @@
+{% extends "base.html" %}
+
+{% block title %}
+FitBuddy - Your Fitness Plan
+{% endblock %}
+
+
+{% block content %}
+
+<section class="page-header">
+
+    <p class="eyebrow">
+        YOUR FITBUDDY PLAN
+    </p>
+
+    <h1>
+        Hello, {{ username }}! 👋
+    </h1>
+
+    <p>
+        Here is your personalized general wellness plan.
+    </p>
+
+</section>
+
+
+{% if error %}
+
+<div class="alert error">
+    {{ error }}
+</div>
+
+{% endif %}
+
+
+{% if message %}
+
+<div class="alert success">
+    {{ message }}
+</div>
+
+{% endif %}
+
+
+<section class="user-summary card">
+
+    <h2>Your Details</h2>
+
+    <div class="summary-grid">
+
+        <div>
+            <span>Name</span>
+            <strong>{{ username }}</strong>
+        </div>
+
+        <div>
+            <span>User ID</span>
+            <strong>{{ user_id }}</strong>
+        </div>
+
+        <div>
+            <span>Age</span>
+            <strong>{{ age }}</strong>
+        </div>
+
+        <div>
+            <span>Weight</span>
+            <strong>{{ weight }} kg</strong>
+        </div>
+
+        <div>
+            <span>Goal</span>
+            <strong>{{ goal }}</strong>
+        </div>
+
+        <div>
+            <span>Intensity</span>
+            <strong>{{ intensity }}</strong>
+        </div>
+
+    </div>
+
+</section>
+
+
+{% if workout_plan %}
+
+<section class="card plan-card">
+
+    <div class="section-heading">
+
+        <h2>🏋️ Your 7-Day Workout Plan</h2>
+
+    </div>
+
+    <pre class="plan-content">{{ workout_plan }}</pre>
+
+</section>
+
+{% endif %}
+
+
+{% if nutrition_tip %}
+
+<section class="card">
+
+    <h2>🥗 Nutrition & Recovery Tip</h2>
+
+    <div class="tip-box">
+        {{ nutrition_tip }}
+    </div>
+
+</section>
+
+{% endif %}
+
+
+{% if updated_plan %}
+
+<section class="card updated-card">
+
+    <h2>🔄 Updated Workout Plan</h2>
+
+    <p class="muted">
+        This plan was generated using your feedback.
+    </p>
+
+    <pre class="plan-content">{{ updated_plan }}</pre>
+
+</section>
+
+{% endif %}
+
+
+<section class="card feedback-card">
+
+    <h2>💬 Give Feedback</h2>
+
+    <p class="muted">
+        Tell FitBuddy what you would like changed
+        in your workout plan.
+    </p>
+
+    <form
+        action="/submit-feedback"
+        method="post"
+        class="form"
+    >
+
+        <input
+            type="hidden"
+            name="user_id"
+            value="{{ user_id }}"
+        >
+
+        <div class="form-group">
+
+            <label for="feedback">
+                Your Feedback
+            </label>
+
+            <textarea
+                id="feedback"
+                name="feedback"
+                rows="5"
+                maxlength="2000"
+                placeholder="Example: I would like more rest days."
+                required
+            ></textarea>
+
+        </div>
+
+        <button
+            type="submit"
+            class="btn primary-btn"
+        >
+            Update My Plan
+        </button>
+
+    </form>
+
+</section>
+
+
+<section class="safety-note">
+
+    <h3>⚠️ Safety Reminder</h3>
+
+    <p>
+        FitBuddy provides general wellness guidance and is
+        not a medical service. Stop exercising if you experience
+        pain, dizziness, or feel unwell, and seek appropriate
+        adult or professional help.
+    </p>
+
+</section>
+
+
+<div class="back-link">
+
+    <a href="/" class="btn secondary-btn">
+        ← Create Another Plan
+    </a>
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,246 @@
+{% extends "base.html" %}
+
+{% block title %}
+FitBuddy - AI Fitness Plan Generator
+{% endblock %}
+
+
+{% block content %}
+
+<section class="hero">
+
+    <div class="hero-text">
+
+        <p class="eyebrow">
+            AI FITNESS PLANNER
+        </p>
+
+        <h1>
+            Create your personalized
+            <span>7-Day Fitness Plan</span>
+        </h1>
+
+        <p class="hero-description">
+            Enter your basic details and fitness preferences.
+            FitBuddy will generate a general wellness workout
+            plan and nutrition/recovery guidance.
+        </p>
+
+    </div>
+
+</section>
+
+
+<section class="card">
+
+    <h2>Enter Your Details</h2>
+
+    {% if error %}
+        <div class="alert error">
+            {{ error }}
+        </div>
+    {% endif %}
+
+
+    <form
+        action="/generate-workout"
+        method="post"
+        class="form"
+    >
+
+        <div class="form-group">
+
+            <label for="username">
+                Name
+            </label>
+
+            <input
+                type="text"
+                id="username"
+                name="username"
+                placeholder="Enter your name"
+                required
+            >
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label for="user_id">
+                User ID
+            </label>
+
+            <input
+                type="text"
+                id="user_id"
+                name="user_id"
+                placeholder="Example: FB001"
+                required
+            >
+
+        </div>
+
+
+        <div class="form-row">
+
+            <div class="form-group">
+
+                <label for="age">
+                    Age
+                </label>
+
+                <input
+                    type="number"
+                    id="age"
+                    name="age"
+                    min="13"
+                    max="100"
+                    required
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="weight">
+                    Weight (kg)
+                </label>
+
+                <input
+                    type="number"
+                    id="weight"
+                    name="weight"
+                    min="1"
+                    max="500"
+                    step="0.1"
+                    required
+                >
+
+            </div>
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label for="goal">
+                Fitness Goal
+            </label>
+
+            <select
+                id="goal"
+                name="goal"
+                required
+            >
+
+                <option value="">
+                    Select your goal
+                </option>
+
+                <option value="weight loss">
+                    Weight Loss
+                </option>
+
+                <option value="muscle gain">
+                    Muscle Gain
+                </option>
+
+                <option value="general wellness">
+                    General Wellness
+                </option>
+
+                <option value="flexibility">
+                    Flexibility
+                </option>
+
+            </select>
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label for="intensity">
+                Workout Intensity
+            </label>
+
+            <select
+                id="intensity"
+                name="intensity"
+                required
+            >
+
+                <option value="">
+                    Select intensity
+                </option>
+
+                <option value="low">
+                    Low
+                </option>
+
+                <option value="medium">
+                    Medium
+                </option>
+
+                <option value="high">
+                    High
+                </option>
+
+            </select>
+
+        </div>
+
+
+        <button
+            type="submit"
+            class="btn primary-btn"
+        >
+            Generate My Plan
+        </button>
+
+    </form>
+
+</section>
+
+
+<section class="info-grid">
+
+    <div class="info-card">
+
+        <h3>🏋️ 7-Day Plan</h3>
+
+        <p>
+            Get a structured general fitness plan
+            for seven days.
+        </p>
+
+    </div>
+
+
+    <div class="info-card">
+
+        <h3>🥗 Nutrition Tips</h3>
+
+        <p>
+            Receive simple nutrition and recovery
+            guidance.
+        </p>
+
+    </div>
+
+
+    <div class="info-card">
+
+        <h3>🔄 Feedback Updates</h3>
+
+        <p>
+            Submit feedback and generate an updated plan.
+        </p>
+
+    </div>
+
+</section>
+
+{% endblock %}
